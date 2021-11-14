@@ -11,7 +11,9 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update"
+		"packages-update": "wp-scripts packages-update",
+		"phpcs": "vendor/bin/phpcs --standard='Inpsyde' ./inc",
+		"phpcbf": "phpcbf --standard='./vendor/inpsyde/php-coding-standards/inpsyde'"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "^8.0.1",
