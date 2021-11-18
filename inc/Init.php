@@ -18,6 +18,7 @@ class Init
 
         add_action('init', [self::$_instance, 'create_block_inpsyde_user_block_init']);
         add_action('save_post_inpsyde-user', [ self::$_instance, 'save_post_meta'], 10, 3 );
+        add_action( 'rest_api_init', [ self::$_instance, 'add_fields_to_rest'], 10, 3 );
         return self::$_instance;
     }
 
@@ -43,12 +44,14 @@ class Init
             $deps_version['version']
         );
         wp_enqueue_script( 'inpsyde-user-editor' );
+        wp_enqueue_style( 'inpsyde-user-style', INPSYDE_USER_BASE_URL . 'build/style-index.css', [], $deps_version['dependencies'], 'all' );
+        wp_enqueue_style( 'inpsyde-user', INPSYDE_USER_BASE_URL . 'build/index.css', [], $deps_version['dependencies'], 'all' );
         register_block_type(
             'eliasu/inpsyde-user', 
             array(
                 'editor_script' => 'inpsyde-user-editor',
-                // 'editor_style'  => $block_slug . "-editor",
-                // 'style'         => $block_slug,
+                'editor_style'  => 'inpsyde-user',
+                'style'         => 'inpsyde-user-style',
                 'render_callback' => [$this, "_render_callback"],
                 'attributes'      => array(
                     'first_name'    => array(
@@ -64,6 +67,8 @@ class Init
         );
 
         $this->register_post_type();
+
+        //$this->register_rest_user_meta();
     }
     private function _render_callback(){ return "you are welcome";}
 
@@ -75,6 +80,25 @@ class Init
 
         $plugin = isset($_REQUEST['plugin']) ? $_REQUEST['plugin'] : '';
         check_admin_referer("activate-plugin_{$plugin}");
+    }
+    public function add_fields_to_rest()
+    {
+        register_rest_field('inpsyde-user', '_inpsyde_user_meta', [
+            'get_callback' => [$this, 'get_meta_fields']
+        ]);
+        
+        register_rest_field('inpsyde-user', '_featured_image', [
+            'get_callback' => [$this, 'get_user_featured_image']
+        ]);
+    }
+    public function get_meta_fields($post)
+    {
+        return get_post_meta($post['id'], '_inpsyde_user_meta', true);
+    }
+    public function get_user_featured_image($post)
+    {
+        $media_id = get_post_meta($post['id'], '_thumbnail_id', true);
+        return wp_get_attachment_url( $media_id );
     }
     public function register_post_type()
     {
@@ -108,8 +132,9 @@ class Init
                 'items_list_navigation' => _x( 'Inpsyder Users list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default "Posts list navigation"/"Pages list navigation".', 'inpsyde-user' ),
                 'items_list'            => _x( 'Inpsyder Users list', 'Screen reader text for the items list heading on the post type listing screen. Default "Posts list"/"Pages list".', 'inpsyde-user' ),
             ),
-            'supports' => ['thumbnail'],
-            'register_meta_box_cb' => [$this, 'add_user_meta']
+            'supports' => ['thumbnail', 'title', 'custom_fields'],
+            'register_meta_box_cb' => [$this, 'add_user_meta'],
+            'show_in_rest' => true
         );
 
         register_post_type( 'inpsyde-user', $post_type_args );    
@@ -176,7 +201,7 @@ class Init
         $result = wp_update_post( array( 'post_title'=> $full_name, 'ID' => $post_id ), true, true );
         
         update_post_meta( $post_id, '_inpsyde_user_meta', $sanitized_fields );
-        
+
         add_action('save_post_inpsyde-user', [$this, 'save_post_meta'], 10, 3);
     }
     public function sanitize_array_text($data)

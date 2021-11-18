@@ -10,7 +10,47 @@
 .wp-block-create-block-inpsyde-user {
   background-color: #21759b;
   color: #fff;
-  padding: 2px;
+  padding: 2;
+}
+
+.user-card {
+  cursor: pointer;
+  box-shadow: 0 1px 1px 3px rgba(0, 0, 0, 0.015);
+  padding: 2rem;
+  background: #fff;
+}
+.user-card ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.user-card > * {
+  margin-bottom: 1rem;
+}
+
+.modal-wrap {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  transition: all 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+}
+.modal-wrap .modal-content {
+  width: 800px;
+  margin: 0 auto;
+  padding: 6rem;
+  background: #fff;
+}
+.modal-wrap .modal-content > * {
+  margin-bottom: 1.5rem;
+}
+.modal-wrap .full-name {
+  display: flex;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

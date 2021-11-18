@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,7 +11,9 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from "@wordpress/block-editor";
+import "./style.scss";
+import Card from "./components/Card.js";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -22,13 +24,12 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save({ attributes, ...rest }) {
+	const blockProps = useBlockProps.save();
+	console.log(rest);
 	return (
-		<p { ...useBlockProps.save() }>
-			{ __(
-				'Inpsyde User – hello from the saved content!',
-				'inpsyde-user'
-			) }
-		</p>
+		<div {...blockProps}>
+			<Card {...attributes} />
+		</div>
 	);
 }

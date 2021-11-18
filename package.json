@@ -12,12 +12,12 @@
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
 		"packages-update": "wp-scripts packages-update",
-		"phpcs": "vendor/bin/phpcs --standard='Inpsyde' ./inc",
-		"phpcbf": "phpcbf --standard='./vendor/inpsyde/php-coding-standards/inpsyde'"
+		"phpcs": "vendor/bin/phpcs --standard='Inpsyde' ./inc"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "^8.0.1",
 		"@wordpress/blocks": "^11.1.3",
+		"@wordpress/components": "^19.0.2",
 		"@wordpress/i18n": "^4.2.3"
 	},
 	"devDependencies": {
