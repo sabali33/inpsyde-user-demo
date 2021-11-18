@@ -43,9 +43,15 @@ class Init
             $deps_version['dependencies'],
             $deps_version['version']
         );
+        wp_register_script(
+            'inpsyde-user-frontend' ,
+            INPSYDE_USER_BASE_URL . 'build/frontend.js',
+            ['inpsyde-user-editor']
+        );
         wp_enqueue_script( 'inpsyde-user-editor' );
-        wp_enqueue_style( 'inpsyde-user-style', INPSYDE_USER_BASE_URL . 'build/style-index.css', [], $deps_version['dependencies'], 'all' );
-        wp_enqueue_style( 'inpsyde-user', INPSYDE_USER_BASE_URL . 'build/index.css', [], $deps_version['dependencies'], 'all' );
+        wp_enqueue_script( 'inpsyde-user-frontend' );
+        wp_enqueue_style( 'inpsyde-user-style', INPSYDE_USER_BASE_URL . 'build/style.css', [], $deps_version['dependencies'], 'all' );
+        wp_enqueue_style( 'inpsyde-user', INPSYDE_USER_BASE_URL . 'build/editor.css', [], $deps_version['dependencies'], 'all' );
         register_block_type(
             'eliasu/inpsyde-user', 
             array(
@@ -220,7 +226,12 @@ class Init
         if (! current_user_can('activate_plugins') ) {
             return;
         }
-
+        if(version_compare( PHP_VERSION, '7.0.0', '<') ){
+            wp_die( __( 'A minimum of PHP version 7 is required to use this plugin', 'inpsyde-user' ) );
+        }
+        if ( version_compare( get_bloginfo( 'version' ), '5.0', '<' ) ) {
+            die( __( 'A minimum of WordPress Version 3.5 is required to use this plugin', 'customizing-product' ) );
+        }
         $plugin = isset($_REQUEST['plugin']) ? $_REQUEST['plugin'] : '';
         check_admin_referer("deactivate-plugin_{$plugin}");
     }
@@ -239,7 +250,7 @@ class Init
     }
 }
 
-// 
+
 // register_activation_hook(__FILE__, 'Inpsyde_User::do_activate');
 // register_deactivation_hook(__FILE__, 'Inpsyde_User::do_deactivate');
 // register_uninstall_hook(__FILE__, 'Inpsyde_User::do_uninstall');

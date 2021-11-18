@@ -24,9 +24,8 @@ import Card from "./components/Card.js";
  *
  * @return {WPElement} Element to render.
  */
-export default function save({ attributes, ...rest }) {
+export default function save({ attributes }) {
 	const blockProps = useBlockProps.save();
-	console.log(rest);
 	return (
 		<div {...blockProps}>
 			<Card {...attributes} />

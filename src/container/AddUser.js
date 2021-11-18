@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "@wordpress/element";
-import { addFilter } from "@wordpress/hooks";
+import createElement, { useEffect, useState } from "@wordpress/element";
 import { RichText, useBlockProps } from "@wordpress/block-editor";
-import { Autocomplete } from "@wordpress/components";
 
 import apiFetch from "@wordpress/api-fetch";
 
@@ -66,12 +64,12 @@ const AddUser = (props) => {
 				onReplace={(opt) => {
 					const user_meta = opt[0];
 					setEnteredText(user_meta);
-
+					console.log(user_meta);
 					props.onSelectUser({
 						first_name: user_meta.first_name,
 						last_name: user_meta.last_name,
 						position: user_meta.position,
-						intro: user_meta.intro,
+						short_description: user_meta.intro,
 						social_media_networks: [user_meta.social_media_networks],
 						image_url: user_meta.image_url,
 					});

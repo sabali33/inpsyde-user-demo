@@ -1,0 +1,10 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-inpsyde-user {
+  border: 1px dotted #f00;
+}
+/*# sourceURL=webpack://./src/editor.scss */
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9lZGl0b3Iuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7OztFQUFBO0FBTUE7RUFDQyx1QkFBQTtBQUFEIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBUaGUgZm9sbG93aW5nIHN0eWxlcyBnZXQgYXBwbGllZCBpbnNpZGUgdGhlIGVkaXRvciBvbmx5LlxuICpcbiAqIFJlcGxhY2UgdGhlbSB3aXRoIHlvdXIgb3duIHN0eWxlcyBvciByZW1vdmUgdGhlIGZpbGUgY29tcGxldGVseS5cbiAqL1xuXG4ud3AtYmxvY2stY3JlYXRlLWJsb2NrLWlucHN5ZGUtdXNlciB7XG5cdGJvcmRlcjogMXB4IGRvdHRlZCAjZjAwO1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */

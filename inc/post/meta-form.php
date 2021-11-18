@@ -34,7 +34,7 @@
 	<?php foreach( $social_media_networks as $key => $network ): ?>
 		<p>
 			<label for="inpsyde-user<?php echo esc_attr( $key ); ?>"> <?php echo $network; ?></label>
-			<input type="text" name="social_media_networks[<?php echo esc_attr( $key ); ?>]" id="inpsyde-user<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr($social_media_networks_data[$key]) ?>">
+			<input type="url" name="social_media_networks[<?php echo esc_attr( $key ); ?>]" id="inpsyde-user<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr($social_media_networks_data[$key]) ?>">
 		</p>
 	<?php endforeach; ?>
 	<p>

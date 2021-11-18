@@ -15,7 +15,6 @@ import AddUser from "./container/AddUser.js";
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-import { useState } from "@wordpress/element";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -37,18 +36,13 @@ import "./editor.scss";
 export default function Edit(props) {
 	const { isSelected, attributes, setAttributes } = props;
 	const blockProps = useBlockProps();
-	const [openModal, setOpenModal] = useState(false);
-	const closeModal = () => {
-		setOpenModal(false);
-	};
-	console.log(props);
+	const { social_media_networks } = attributes;
 	if (!isSelected && Object.values(attributes).length > 0) {
-		return (
-			<Card {...attributes} editContext={true} onCloseModal={closeModal} />
-		);
+		return <Card {...attributes} />;
 	}
+
 	const handleInputChange = (field, value) => {
-		if (field.startsWidth("social_media_networks")) {
+		if (field.startsWith("social_media_networks")) {
 			const fieldArr = field.split(".");
 			setAttributes({ ...attributes, [fieldArr[1]]: value });
 		} else {
@@ -56,6 +50,7 @@ export default function Edit(props) {
 		}
 	};
 	const setUserAttributes = (attributes) => {
+		console.log(attributes);
 		setAttributes(attributes);
 	};
 	if (isSelected && Object.values(attributes).length < 1) {
@@ -81,8 +76,8 @@ export default function Edit(props) {
 			/>
 			<RichText
 				{...blockProps}
-				value={attributes.intro}
-				onChange={handleInputChange.bind(this, "intro")}
+				value={attributes.short_description}
+				onChange={handleInputChange.bind(this, "short_description")}
 				tagName="div"
 				contentEditable
 				suppressContentEditableWarning
@@ -90,7 +85,7 @@ export default function Edit(props) {
 			/>
 			<TextControl
 				label={__("Facebook")}
-				value={attributes.social_media_networks.facebook}
+				value={social_media_networks[0].facebook}
 				onChange={handleInputChange.bind(
 					this,
 					"social_media_networks.facebook"
@@ -98,17 +93,17 @@ export default function Edit(props) {
 			/>
 			<TextControl
 				label={__("Github")}
-				value={attributes.social_media_networks.github}
+				value={social_media_networks[0].github}
 				onChange={handleInputChange.bind(this, "social_media_networks.github")}
 			/>
 			<TextControl
 				label={__("Xing")}
-				value={attributes.social_media_networks.xing}
+				value={social_media_networks[0].xing}
 				onChange={handleInputChange.bind(this, "social_media_networks.xing")}
 			/>
 			<TextControl
 				label={__("Linkedin")}
-				value={attributes.social_media_networks.linkedin}
+				value={social_media_networks[0].linkedin}
 				onChange={handleInputChange.bind(
 					this,
 					"social_media_networks.linkedin"
