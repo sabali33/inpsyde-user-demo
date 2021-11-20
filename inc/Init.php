@@ -282,6 +282,7 @@ class Init
     public function sanitizeArrayText($data)
     {
         if (!$data || gettype($data) !== 'array') {
+            
             return [];
         }
         $sanitizedFields = [];

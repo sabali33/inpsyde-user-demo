@@ -3,7 +3,7 @@
     "description": "A Gutenberg plugin to show user overview on pages",
     "type": "project",
     "require-dev": {
-        "phpunit/phpunit": "7",
+        "phpunit/phpunit": "7.1",
         "inpsyde/php-coding-standards": "1.x-dev",
         "yoast/phpunit-polyfills": "1.x-dev"
     },
