@@ -4,7 +4,8 @@
     "type": "project",
     "require-dev": {
         "phpunit/phpunit": "7",
-        "inpsyde/php-coding-standards": "1.x-dev"
+        "inpsyde/php-coding-standards": "1.x-dev",
+        "yoast/phpunit-polyfills": "1.x-dev"
     },
     "autoload": {
         "classmap": ["inc/"],

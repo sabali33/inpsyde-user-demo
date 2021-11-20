@@ -6,8 +6,8 @@
 import { __ } from "@wordpress/i18n";
 import { TextControl, Button, Modal } from "@wordpress/components";
 
-import Card from "./components/Card.js";
-import AddUser from "./container/AddUser.js";
+import Card from "./components/Card";
+import AddUser from "./container/AddUser";
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.

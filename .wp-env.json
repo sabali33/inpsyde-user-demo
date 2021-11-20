@@ -2,5 +2,5 @@
 	"plugins": ["."],
 	"port": 3600,
 	"testsPort": 3601,
-	"WP_DEBUG" : false
+	"WP_DEBUG": false
 }

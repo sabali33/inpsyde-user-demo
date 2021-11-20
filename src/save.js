@@ -13,7 +13,7 @@ import { __ } from "@wordpress/i18n";
  */
 import { useBlockProps } from "@wordpress/block-editor";
 import "./style.scss";
-import Card from "./components/Card.js";
+import Card from "./components/Card";
 
 /**
  * The save function defines the way in which the different attributes should

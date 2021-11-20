@@ -21,6 +21,7 @@ defined( 'ABSPATH' ) || exit;
 
 define('INPSYDE_USER_BASE', plugin_dir_path( __FILE__ ));
 define('INPSYDE_USER_BASE_URL', plugin_dir_url( __FILE__ ));
+define('INPSYDE_USER_ROOT', __FILE__ );
 
 require_once INPSYDE_USER_BASE . 'vendor/autoload.php';
 
