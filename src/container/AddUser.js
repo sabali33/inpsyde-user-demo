@@ -48,7 +48,7 @@ const AddUser = (props) => {
 	}, [enteredText]);
 
 	return (
-		<div>
+		<div id="search-inpsyde-user-box">
 			<RichText
 				{...block_props}
 				tagName="div"

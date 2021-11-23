@@ -30,6 +30,7 @@ class Init
         add_action('init', [self::$instance, 'initCallack']);
         add_action('save_post_inpsyde-user', [ self::$instance, 'savePostMeta'], 10);
         add_action('rest_api_init', [ self::$instance, 'addFieldsToRest'], 10, 3);
+        add_action( 'admin_enqueue_scripts', [self::$instance, 'addAdminAssets'] );
 
         register_activation_hook(INPSYDE_USER_ROOT, [ self::$instance, 'doActivate']);
         register_deactivation_hook(INPSYDE_USER_ROOT, [ self::$instance, 'doDeactivate']);
@@ -88,6 +89,10 @@ class Init
         $this->registerPostType();
 
         //$this->register_rest_user_meta();
+    }
+    public function addAdminAssets()
+    {
+        wp_enqueue_style( 'inpsyde-admin-css', INPSYDE_USER_BASE_URL .'css/admin.css', [], null, 'all' );
     }
 
     /**
@@ -183,7 +188,7 @@ class Init
                 'items_list_navigation' => _x('Inpsyder Users list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default "Posts list navigation"/"Pages list navigation".', 'inpsyde-user'),
                 'items_list' => _x('Inpsyder Users list', 'Screen reader text for the items list heading on the post type listing screen. Default "Posts list"/"Pages list".', 'inpsyde-user'),
             ],
-            'supports' => ['thumbnail', 'title', 'custom_fields'],
+            'supports' => ['thumbnail', 'title', 'custom_fields', 'editor'],
             'register_meta_box_cb' => [$this, 'addUserMeta'],
             'show_in_rest' => true,
         ];
@@ -221,7 +226,7 @@ class Init
         ) {
             wp_die('You are not authorized');
         }
-        
+
         $allowed_fields = [
             'first_name' => [
                 'sanitize' => 'sanitize_text_field',
@@ -261,7 +266,7 @@ class Init
         if ($errors) {
             return;
         }
-        
+
         remove_action('save_post_inpsyde-user', [$this, 'savePostMeta'], 10);
 
         $full_name = "{$sanitizedFields['first_name']} {$sanitizedFields['last_name']}";
@@ -272,7 +277,7 @@ class Init
 
         add_action('save_post_inpsyde-user', [$this, 'savePostMeta'], 10);
     }
-    
+
     /**
      * Sanitize array of strings
      *
@@ -282,7 +287,6 @@ class Init
     public function sanitizeArrayText($data)
     {
         if (!$data || gettype($data) !== 'array') {
-            
             return [];
         }
         $sanitizedFields = [];

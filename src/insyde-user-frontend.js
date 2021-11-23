@@ -6,11 +6,14 @@ window.addEventListener("load", () => {
 	const card = document.querySelector(
 		".wp-block-eliasu-inpsyde-user .user-card"
 	);
-
-	close_button.addEventListener("click", () => {
-		modal_wrap.classList.remove("inpsyde-user-active");
-	});
-	card.addEventListener("click", () => {
-		modal_wrap.classList.add("inpsyde-user-active");
-	});
+	if (close_button) {
+		close_button.addEventListener("click", () => {
+			modal_wrap.classList.remove("inpsyde-user-active");
+		});
+	}
+	if (card) {
+		card.addEventListener("click", () => {
+			modal_wrap.classList.add("inpsyde-user-active");
+		});
+	}
 });

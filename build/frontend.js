@@ -16,7 +16,7 @@ var frontend;
   \*************************************/
 /***/ (() => {
 
-eval("window.addEventListener(\"load\", function () {\n  var close_button = document.querySelector(\".close-modal\");\n  var modal_wrap = document.querySelector(\".wp-block-eliasu-inpsyde-user .modal-wrap\");\n  var card = document.querySelector(\".wp-block-eliasu-inpsyde-user .user-card\");\n  close_button.addEventListener(\"click\", function () {\n    modal_wrap.classList.remove(\"inpsyde-user-active\");\n  });\n  card.addEventListener(\"click\", function () {\n    modal_wrap.classList.add(\"inpsyde-user-active\");\n  });\n});\n\n//# sourceURL=webpack://%5Bname%5D/./src/insyde-user-frontend.js?");
+eval("window.addEventListener(\"load\", () => {\n  const close_button = document.querySelector(\".close-modal\");\n  const modal_wrap = document.querySelector(\".wp-block-eliasu-inpsyde-user .modal-wrap\");\n  const card = document.querySelector(\".wp-block-eliasu-inpsyde-user .user-card\");\n\n  if (close_button) {\n    close_button.addEventListener(\"click\", () => {\n      modal_wrap.classList.remove(\"inpsyde-user-active\");\n    });\n  }\n\n  if (card) {\n    card.addEventListener(\"click\", () => {\n      modal_wrap.classList.add(\"inpsyde-user-active\");\n    });\n  }\n});\n\n//# sourceURL=webpack://%5Bname%5D/./src/insyde-user-frontend.js?");
 
 /***/ })
 

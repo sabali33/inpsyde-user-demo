@@ -24,39 +24,60 @@
 
     ?>
 <div class="inpsyde-user-meta-box">
-    <p>
-        <label for="first-name"> <?php echo esc_html_e('First Name', 'inpsyde-user'); ?></label>
-        <input type="text" name="first_name" id="first-name" value="<?php echo esc_attr($firstName) ?>"> <?php //phpcs:ignore ?>
-    </p>
-    <p>
-        <label for="last-name"> <?php echo esc_html_e('Last Name', 'inpsyde-user'); ?></label>
-        <input 
-        type="text" 
-        name="last_name" id="last-name" 
-        value="<?php echo esc_attr($lastName) ?>" >
-    </p>
-    <p>
-        <label for="position"> <?php echo esc_html_e('Position', 'inpsyde-user'); ?></label>
-        <input type="text" name="position" id="position" value="<?php echo esc_attr($position) ?>">
-    </p>
-    <p>
-        <label for="intro"> <?php echo esc_html_e('Short Introduction', 'inpsyde-user'); ?></label>
-        <textarea name="intro" id="intro"><?php echo esc_html($intro);  ?></textarea>
-    </p>
-    <?php foreach ($socialMediaNetworks as $key => $network) : ?>
-        <p>
-            <label for="inpsyde-user<?php echo esc_attr($key); ?>"> <?php echo esc_html($network); ?></label>
-            <input 
-            type="url" 
-            name="social_media_networks[<?php echo esc_attr($key); ?>]" 
-            id="inpsyde-user<?php echo esc_attr($key); ?>" 
-            value="<?php echo isset($socialMediaNetworksData[$key]) ? esc_attr($socialMediaNetworksData[$key]) : ''; ?>">
+    <div>
+        <p class="label">
+            <label for="first-name"> <?php echo esc_html_e('First Name', 'inpsyde-user'); ?></label>
         </p>
+        <p class="input">
+            <input type="text" name="first_name" id="first-name" value="<?php echo esc_attr($firstName) ?>"> <?php //phpcs:ignore ?>
+        </p>
+        
+    </div>
+    <div>
+        <p class="label">
+            <label for="last-name"> <?php echo esc_html_e('Last Name', 'inpsyde-user'); ?></label>
+        </p>
+        <p class="input">
+            <input 
+            type="text" 
+            name="last_name" id="last-name" 
+            value="<?php echo esc_attr($lastName) ?>" >
+    </p>
+    </div>
+    <div>
+        <p class="label">
+            <label for="position"> <?php echo esc_html_e('Position', 'inpsyde-user'); ?></label>
+        </p>
+        <p class="input">
+            <input type="text" name="position" id="position" value="<?php echo esc_attr($position) ?>">
+        </p>
+    </div>
+    <div>
+        <p class="label">
+            <label for="intro"> <?php echo esc_html_e('Short Introduction', 'inpsyde-user'); ?></label>
+        </p>
+        <p class="input">
+            <textarea name="intro" id="intro"><?php echo esc_html($intro);  ?></textarea>
+        </p>
+    </div>
+    <?php foreach ($socialMediaNetworks as $key => $network) : ?>
+        <div>
+            <p class="label">
+                <label for="inpsyde-user<?php echo esc_attr($key); ?>"> <?php echo esc_html($network); ?></label>
+            </p>
+            <p class="input">
+                <input 
+                type="url" 
+                name="social_media_networks[<?php echo esc_attr($key); ?>]" 
+                id="inpsyde-user<?php echo esc_attr($key); ?>" 
+                value="<?php echo isset($socialMediaNetworksData[$key]) ? esc_attr($socialMediaNetworksData[$key]) : ''; ?>">
+            </p>
+    </div>
     <?php endforeach; ?>
-    <p>
+    <div>
         <input 
         type="hidden" 
         name="_inpsyde_user_nonce" 
         value="<?php echo esc_attr(wp_create_nonce('inpsyde-user-nonce')); ?>">
-    </p>
+    </div>
 </div>
