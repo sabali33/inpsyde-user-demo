@@ -30,7 +30,7 @@ class Init
         add_action('init', [self::$instance, 'initCallack']);
         add_action('save_post_inpsyde-user', [ self::$instance, 'savePostMeta'], 10);
         add_action('rest_api_init', [ self::$instance, 'addFieldsToRest'], 10, 3);
-        add_action( 'admin_enqueue_scripts', [self::$instance, 'addAdminAssets'] );
+        add_action('admin_enqueue_scripts', [self::$instance, 'addAdminAssets']);
 
         register_activation_hook(INPSYDE_USER_ROOT, [ self::$instance, 'doActivate']);
         register_deactivation_hook(INPSYDE_USER_ROOT, [ self::$instance, 'doDeactivate']);
@@ -90,9 +90,10 @@ class Init
 
         //$this->register_rest_user_meta();
     }
+
     public function addAdminAssets()
     {
-        wp_enqueue_style( 'inpsyde-admin-css', INPSYDE_USER_BASE_URL .'css/admin.css', [], null, 'all' );
+        wp_enqueue_style('inpsyde-admin-css', INPSYDE_USER_BASE_URL . 'css/admin.css', [], null, 'all');
     }
 
     /**
@@ -158,7 +159,7 @@ class Init
 
     public function registerPostType()
     {
-        $post_type_args = [
+        $postTypeArgs = [
             'label' => _x('Inpsyder Users', 'Inpsyder Users', 'inpsyde-user'),
             'has_archive' => false,
             'show_ui' => true,
@@ -193,7 +194,7 @@ class Init
             'show_in_rest' => true,
         ];
 
-        register_post_type('inpsyde-user', $post_type_args);
+        register_post_type('inpsyde-user', $postTypeArgs);
     }
 
     public function addUserMeta()
@@ -217,7 +218,7 @@ class Init
         $sanitizedNonce = isset($_POST['_inpsyde_user_nonce']) ? sanitize_text_field(
             wp_unslash($_POST['_inpsyde_user_nonce'])
         ) : '';
-        if (!isset($_POST) || count($_POST) < 1) {
+        if (!isset($_POST) || count($_POST) < 1) { //phpcs:ignore
             return;
         }
         if (
@@ -227,7 +228,7 @@ class Init
             wp_die('You are not authorized');
         }
 
-        $allowed_fields = [
+        $allowedFields = [
             'first_name' => [
                 'sanitize' => 'sanitize_text_field',
                 'required' => true,
@@ -250,7 +251,7 @@ class Init
         $sanitizedFields = [];
         $errors = false;
 
-        foreach ($allowed_fields as $fieldName => $args) {
+        foreach ($allowedFields as $fieldName => $args) {
             $sanitizeFunc = $args['sanitize'];
             if (isset($args['required']) && $args['required']) {
                 if (isset($_POST[$fieldName]) && !trim(sanitize_text_field(wp_unslash($_POST[$fieldName])))) {
@@ -269,9 +270,9 @@ class Init
 
         remove_action('save_post_inpsyde-user', [$this, 'savePostMeta'], 10);
 
-        $full_name = "{$sanitizedFields['first_name']} {$sanitizedFields['last_name']}";
+        $fullName = "{$sanitizedFields['first_name']} {$sanitizedFields['last_name']}";
 
-        wp_update_post([ 'post_title' => $full_name, 'ID' => $postId ], true, true);
+        wp_update_post([ 'post_title' => $fullName, 'ID' => $postId ], true, true);
 
         update_post_meta($postId, '_inpsyde_user_meta', $sanitizedFields);
 
