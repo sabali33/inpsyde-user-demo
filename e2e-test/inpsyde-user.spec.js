@@ -15,9 +15,6 @@ describe("Insyde User", () => {
 		await enablePageDialogAccept();
 		await setBrowserViewport({ width: 1600, height: 900 });
 	});
-	beforeEach(async () => {
-		await jest.setTimeout(60000);
-	});
 	it("Can add block", async () => {
 		await createNewPost({ postType: "page", title: "New User" });
 		await insertBlock("User Overview");
@@ -26,24 +23,7 @@ describe("Insyde User", () => {
 	});
 	it("Can create Inpsyde user", async () => {
 		await createNewPost({ postType: "inpsyde-user", title: "Eliasu Abraman" });
-		await page.type("#first-name", "Eliasu");
-		await page.type("#last-name", "Abraman");
-		await page.type("#position", "Developer");
-		await page.type("#intro", "I like myself");
-		await page.type("#inpsyde-userfacebook", "http://fb.com/tester");
-		await page.type("#inpsyde-userxing", "http://xing.com/tester");
-		await page.type("#inpsyde-userlinkedin", "http://lkd.com/tester");
-		await page.type("#inpsyde-usergithub", "http://gt.com/tester");
-		const arrows = await page.$$(
-			".components-button.components-panel__body-toggle[aria-expanded='false']"
-		);
-		await Promise.all(arrows.map(async (arrow) => await arrow.click()));
-		await page.waitForSelector(".editor-post-featured-image");
-		await page.click(".editor-post-featured-image__toggle");
-		await page.waitForSelector(".supports-drag-drop");
-		await page.click("#menu-item-browse");
-		await page.click(".save-ready");
-		await page.click(".media-button-select");
+		await createInpsydeUser();
 		await publishPost();
 	});
 	it("Can set block attributes", async () => {
