@@ -34,7 +34,7 @@ describe("Insyde User", () => {
 			".components-autocomplete__result.components-button"
 		);
 		await page.click(".components-autocomplete__result.components-button");
-		await page.waitForSelector(".user-card img");
+		//await page.waitForSelector(".user-card img");
 		expect(await getEditedPostContent()).toMatchSnapshot();
 		await deleteInpsydeUser();
 	});

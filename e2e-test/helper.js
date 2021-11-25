@@ -9,8 +9,6 @@ export const createInpsydeUser = async (data) => {
 	await page.type("#inpsyde-userxing", "http://xing.com/tester");
 	await page.type("#inpsyde-userlinkedin", "http://lkd.com/tester");
 	await page.type("#inpsyde-usergithub", "http://gt.com/tester");
-	// await page.click(".interface-pinned-items");
-	// await page.waitForSelector(".interface-interface-skeleton__sidebar");
 	const arrows = await page.$$(
 		".components-button.components-panel__body-toggle[aria-expanded='false']"
 	);
@@ -19,8 +17,13 @@ export const createInpsydeUser = async (data) => {
 	await page.click(".editor-post-featured-image__toggle");
 	await page.waitForSelector(".supports-drag-drop");
 	await page.click("#menu-item-browse");
-	await page.click(".save-ready");
-	await page.click(".media-button-select");
+	const firstImage = await page.$(".save-ready");
+	if (firstImage) {
+		await page.click(".save-ready");
+		await page.click(".media-button-select");
+	} else {
+		await page.click(".media-modal-close span.media-modal-icon");
+	}
 };
 
 export const deleteInpsydeUser = async () => {

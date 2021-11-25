@@ -16,8 +16,7 @@ Run `vendor/bin/phpunit` in the plugin root folder. Of course ensure you run the
 
 ### End-to-End Testing
 
-In `wp-env` environment, simple run `npm run test:e2e`. In package.json file you can pass the --puppeteer-interactive flag to launch
-chromium browser.
+In `wp-env` environment, simple run `npm run test:e2e`. In package.json file you can pass the --puppeteer-interactive flag to launch chromium browser.
 
 For other environments:
 
