@@ -69,7 +69,7 @@ registerBlockType("eliasu/inpsyde-user", {
 		image_url: {
 			type: "string",
 			source: "attribute",
-			selector: ".user-card img",
+			selector: ".user-card > img",
 			attribute: "src",
 			default: "",
 		},

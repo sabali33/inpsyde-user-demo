@@ -64,7 +64,7 @@ const AddUser = (props) => {
 				onReplace={(opt) => {
 					const user_meta = opt[0];
 					setEnteredText(user_meta);
-					console.log(user_meta);
+					//console.log(user_meta);
 					props.onSelectUser({
 						first_name: user_meta.first_name,
 						last_name: user_meta.last_name,

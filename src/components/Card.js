@@ -1,7 +1,6 @@
 import { __ } from "@wordpress/i18n";
 const Card = (props) => {
 	const { social_media_networks } = props;
-	console.log(props);
 	return (
 		<>
 			<div className={`user-card`}>

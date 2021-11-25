@@ -6,6 +6,7 @@ import {
 	createNewPost,
 	enablePageDialogAccept,
 	publishPost,
+	setBrowserViewport,
 } from "@wordpress/e2e-test-utils";
 import { createInpsydeUser } from "./helper";
 
@@ -14,6 +15,7 @@ describe("Insyde User", () => {
 	const plugin = "inpsyde-user-plugin";
 	beforeAll(async () => {
 		await enablePageDialogAccept();
+		await setBrowserViewport({ width: 1600, height: 900 });
 	});
 
 	it("Can add block", async () => {
@@ -21,12 +23,11 @@ describe("Insyde User", () => {
 		await insertBlock("User Overview");
 		expect(await page.$('[data-type="eliasu/inpsyde-user"]')).not.toBeNull();
 		expect(await getEditedPostContent()).toMatchSnapshot();
-		//await publishPost();
 	});
 	it("Can create Inpsyde user", async () => {
 		await createNewPost({ postType: "inpsyde-user", title: "Eliasu Abraman" });
 		await createInpsydeUser();
-		//await publishPost();
+		await publishPost();
 	});
 	it("Can set block attributes", async () => {
 		await createNewPost({ postType: "page", title: "New User" });
@@ -36,6 +37,7 @@ describe("Insyde User", () => {
 			".components-autocomplete__result.components-button"
 		);
 		await page.click(".components-autocomplete__result.components-button");
+		await page.waitForSelector(".user-card img");
 		expect(await getEditedPostContent()).toMatchSnapshot();
 	});
 });

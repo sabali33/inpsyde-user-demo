@@ -37,9 +37,9 @@ export default function Edit(props) {
 	const { isSelected, attributes, setAttributes } = props;
 	const blockProps = useBlockProps();
 	const { social_media_networks } = attributes;
-	if (!isSelected && Object.values(attributes).length > 0) {
-		return <Card {...attributes} />;
-	}
+	// if (!isSelected && Object.values(attributes).length > 0) {
+	// 	return <Card {...attributes} />;
+	// }
 
 	const handleInputChange = (field, value) => {
 		if (field.startsWith("social_media_networks")) {
@@ -57,58 +57,67 @@ export default function Edit(props) {
 		return <AddUser onSelectUser={setUserAttributes} />;
 	}
 	return (
+		// <div {...blockProps}>
+		// 	<AddUser onSelectUser={setUserAttributes} />
+		// 	<TextControl
+		// 		label={__("First Name")}
+		// 		value={attributes.first_name}
+		// 		onChange={handleInputChange.bind(this, "first_name")}
+		// 	/>
+		// 	<TextControl
+		// 		label={__("Last Name")}
+		// 		value={attributes.last_name}
+		// 		onChange={handleInputChange.bind(this, "last_name")}
+		// 	/>
+		// 	<TextControl
+		// 		label={__("Position")}
+		// 		value={attributes.position}
+		// 		onChange={handleInputChange.bind(this, "position")}
+		// 	/>
+		// 	<TextControl
+		// 		label={__("Image")}
+		// 		value={attributes.image_url}
+		// 		onChange={handleInputChange.bind(this, "image_url")}
+		// 	/>
+		// 	<RichText
+		// 		{...blockProps}
+		// 		value={attributes.short_description}
+		// 		onChange={handleInputChange.bind(this, "short_description")}
+		// 		tagName="div"
+		// 		contentEditable
+		// 		suppressContentEditableWarning
+		// 		placeholder={__("Enter a short description")}
+		// 	/>
+		// 	<TextControl
+		// 		label={__("Facebook")}
+		// 		value={social_media_networks[0].facebook}
+		// 		onChange={handleInputChange.bind(
+		// 			this,
+		// 			"social_media_networks.facebook"
+		// 		)}
+		// 	/>
+		// 	<TextControl
+		// 		label={__("Github")}
+		// 		value={social_media_networks[0].github}
+		// 		onChange={handleInputChange.bind(this, "social_media_networks.github")}
+		// 	/>
+		// 	<TextControl
+		// 		label={__("Xing")}
+		// 		value={social_media_networks[0].xing}
+		// 		onChange={handleInputChange.bind(this, "social_media_networks.xing")}
+		// 	/>
+		// 	<TextControl
+		// 		label={__("Linkedin")}
+		// 		value={social_media_networks[0].linkedin}
+		// 		onChange={handleInputChange.bind(
+		// 			this,
+		// 			"social_media_networks.linkedin"
+		// 		)}
+		// 	/>
+		// </div>
 		<div {...blockProps}>
 			<AddUser onSelectUser={setUserAttributes} />
-			<TextControl
-				label={__("First Name")}
-				value={attributes.first_name}
-				onChange={handleInputChange.bind(this, "first_name")}
-			/>
-			<TextControl
-				label={__("Last Name")}
-				value={attributes.last_name}
-				onChange={handleInputChange.bind(this, "last_name")}
-			/>
-			<TextControl
-				label={__("Position")}
-				value={attributes.position}
-				onChange={handleInputChange.bind(this, "position")}
-			/>
-			<RichText
-				{...blockProps}
-				value={attributes.short_description}
-				onChange={handleInputChange.bind(this, "short_description")}
-				tagName="div"
-				contentEditable
-				suppressContentEditableWarning
-				placeholder={__("Enter a short description")}
-			/>
-			<TextControl
-				label={__("Facebook")}
-				value={social_media_networks[0].facebook}
-				onChange={handleInputChange.bind(
-					this,
-					"social_media_networks.facebook"
-				)}
-			/>
-			<TextControl
-				label={__("Github")}
-				value={social_media_networks[0].github}
-				onChange={handleInputChange.bind(this, "social_media_networks.github")}
-			/>
-			<TextControl
-				label={__("Xing")}
-				value={social_media_networks[0].xing}
-				onChange={handleInputChange.bind(this, "social_media_networks.xing")}
-			/>
-			<TextControl
-				label={__("Linkedin")}
-				value={social_media_networks[0].linkedin}
-				onChange={handleInputChange.bind(
-					this,
-					"social_media_networks.linkedin"
-				)}
-			/>
+			<Card {...attributes} />
 		</div>
 	);
 }
